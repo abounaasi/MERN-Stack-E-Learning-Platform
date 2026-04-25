@@ -1,6 +1,7 @@
 import TryCatch from "../middlewares/TryCatch.js";
 import { Courses } from "../models/Courses.js";
 import { Lecture } from "../models/Lecture.js";
+
 export const createCourse = TryCatch(async (req, res) => {
   const { title, description, category, createdBy, duration, price } = req.body;
 
@@ -22,7 +23,8 @@ export const createCourse = TryCatch(async (req, res) => {
 });
 
 export const addlectures = TryCatch(async (req, res) => {
-  const course = await Courses.findById(req.parms.id);
+  // Bug 1 fixed: req.params not req.parms
+  const course = await Courses.findById(req.params.id);
 
   if (!course)
     return res.status(404).json({
@@ -33,10 +35,11 @@ export const addlectures = TryCatch(async (req, res) => {
 
   const file = req.file;
 
-  const lecture = await Lecture({
+  // Bug 2 fixed: Lecture.create() not Lecture()
+  // Bug 3 fixed: removed stray "file" field
+  const lecture = await Lecture.create({
     title,
     description,
-    file,
     video: file?.path,
     course: course._id,
   });
