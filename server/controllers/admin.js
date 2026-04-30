@@ -57,8 +57,7 @@ export const addlectures = TryCatch(async (req, res) => {
 export const deleteLecture = TryCatch(async (req, res) => {
   const lecture = await Lecture.findById(req.params.id);
 
-  if (!lecture)
-    return res.status(404).json({ message: "Lecture not found" });
+  if (!lecture) return res.status(404).json({ message: "Lecture not found" });
 
   rm(lecture.video, () => {
     console.log("Video Deleted");
@@ -92,5 +91,21 @@ export const deleteCourse = TryCatch(async (req, res) => {
 
   res.json({
     message: "Course Deleted",
+  });
+});
+
+export const getAllStats = TryCatch(async (req, res) => {
+  const totalCourses = (await Courses.find()).length;
+  const totalLectures = (await Lecture.find()).length;
+  const totalUsers = (await User.find()).length;
+
+  const stats = {
+    totalCourses,
+    totalLectures,
+    totalUsers,
+  };
+
+  res.json({
+    stats,
   });
 });
