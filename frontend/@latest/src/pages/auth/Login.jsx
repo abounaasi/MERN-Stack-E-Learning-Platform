@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="<auth-page">
+    <div className="auth-page">
       <div className="auth-form">
         <h2>Login</h2>
         <form>

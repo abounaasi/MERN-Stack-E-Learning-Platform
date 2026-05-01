@@ -10,10 +10,10 @@ const Verify = () => {
         <form>
           <label htmlFor="otp">Otp</label>
           <input type="number" required />
-          <button className="common-btn"> Verify</button>
+          <button className="common-btn">Verify</button>
         </form>
         <p>
-          Go to<Link to="/login"> Login</Link> page
+          Go to <Link to="/login">Login</Link> page
         </p>
       </div>
     </div>
