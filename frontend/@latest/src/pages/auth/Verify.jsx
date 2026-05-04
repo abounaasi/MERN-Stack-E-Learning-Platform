@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import "./auth.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { UserData } from "../../context/UserContext";
 
 const Verify = () => {
   const [otp, setOtp] = useState("");
+  const { btnLoading, verifyOtp } = UserData();
+  const navigate = useNavigate;
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    console.log(otp);
+    await verifyOtp(Number(otp), navigate);
   };
   return (
     <div className="auth-page">
@@ -21,8 +24,8 @@ const Verify = () => {
             onChange={(e) => setOtp(e.target.value)}
             required
           />
-          <button type="submit" className="common-btn">
-            Verify
+          <button disabled={btnLoading} type="submit" className="common-btn">
+            {btnLoading ? "Please Wait..." : "Verify"}
           </button>
         </form>
         <p>
