@@ -148,7 +148,7 @@ export const UserContextProvider = ({ children }) => {
   }
 
   async function verifyOtp(otp, navigate) {
-    //setBtnLoading(true);
+    setBtnLoading(true);
     const activationToken = localStorage.getItem("activationToken");
     try {
       const { data } = await axios.post(`${server}/api/user/verify`, {

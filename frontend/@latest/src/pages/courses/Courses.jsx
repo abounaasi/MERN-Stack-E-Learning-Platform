@@ -1,7 +1,7 @@
 import React from "react";
 import "./courses.css";
-//import { CourseData } from "../../context/CourseContext";
-//import CourseCard from "../../components/coursecard/CourseCard";
+import { CourseData } from "../../context/CourseContext";
+import CourseCard from "../../components/coursecard/CourseCard";
 
 const Courses = () => {
   const { courses } = CourseData();
