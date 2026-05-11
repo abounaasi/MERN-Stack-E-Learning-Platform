@@ -25,14 +25,17 @@ const Account = ({ user }) => {
           <h2>My Profile</h2>
           <div className="profile-info">
             <p>
-              <strong>Name-{user.name}</strong>
+              <strong>Name:{user.name}</strong>
             </p>
 
             <p>
-              <strong>Email-{user.email}</strong>
+              <strong>Email:{user.email}</strong>
             </p>
 
-            <button className="common-btn">
+            <button
+              onClick={() => navigate(`/${user._id}/dashboard`)}
+              className="common-btn"
+            >
               <MdDashboard />
               Dashboard
             </button>
