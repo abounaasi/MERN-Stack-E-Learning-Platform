@@ -1,0 +1,223 @@
+/* ─── Progress bar (top) ───────────────────────── */
+.progress {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 18px 24px;
+  text-align: left;
+  color: #444;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  box-shadow: 0 4px 12px rgba(138, 75, 175, 0.04);
+}
+
+.progress progress {
+  flex: 1;
+  min-width: 200px;
+  height: 8px;
+  border: none;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progress progress::-webkit-progress-bar {
+  background: #f0e8f5;
+  border-radius: 999px;
+}
+
+.progress progress::-webkit-progress-value {
+  background: linear-gradient(90deg, #8a4baf, #b078d3);
+  border-radius: 999px;
+  transition: width 0.3s ease;
+}
+
+.progress progress::-moz-progress-bar {
+  background: #8a4baf;
+  border-radius: 999px;
+}
+
+/* ─── Page layout ──────────────────────────────── */
+.lecture-page {
+  display: flex;
+  gap: 28px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  min-height: 80vh;
+  background: transparent;
+}
+
+body:has(.lecture-page) {
+  background: #faf7fc;
+}
+
+.lecture-page .left {
+  flex: 1 1 65%;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(138, 75, 175, 0.04);
+}
+
+.lecture-page .left video {
+  width: 100%;
+  border-radius: 12px;
+  background: #000;
+  display: block;
+  margin-bottom: 20px;
+}
+
+.lecture-page .left h1 {
+  font-size: 22px;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.lecture-page .left h3 {
+  font-size: 15px;
+  color: #666;
+  margin: 0;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.lecture-page .right {
+  flex: 1 1 35%;
+  min-width: 280px;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* ─── Lecture list items ──────────────────────── */
+.lecture-number {
+  background: #ffffff;
+  padding: 14px 16px;
+  border: 1px solid #ececec;
+  border-radius: 10px;
+  text-align: left;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  transition: background-color 0.2s ease, color 0.2s ease,
+    border-color 0.2s ease, transform 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.lecture-number:hover {
+  background: #faf3ff;
+  border-color: rgba(138, 75, 175, 0.4);
+}
+
+.lecture-number.active {
+  background: #8a4baf;
+  color: white;
+  border-color: #8a4baf;
+}
+
+.lecture-number .completed-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: #22a06b;
+  color: white;
+  border-radius: 50%;
+  font-size: 14px;
+}
+
+/* ─── Admin "Add Lecture" form ────────────────── */
+.lecture-form {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  padding: 24px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  box-shadow: 0 4px 12px rgba(138, 75, 175, 0.06);
+}
+
+.lecture-form h2 {
+  font-size: 18px;
+  color: #1a1a1a;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.lecture-form form {
+  text-align: left;
+}
+
+.lecture-form label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+}
+
+.lecture-form input[type="text"] {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  margin-bottom: 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  font-size: 14px;
+  background: #fafafa;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lecture-form input[type="text"]:focus {
+  outline: none;
+  border-color: #8a4baf;
+  background: #ffffff;
+  box-shadow: 0 0 0 3px rgba(138, 75, 175, 0.15);
+}
+
+.lecture-form input[type="file"] {
+  width: 100%;
+  font-size: 13px;
+  margin-bottom: 14px;
+}
+
+.lecture-form video {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 14px;
+}
+
+.lecture-form .common-btn {
+  width: 100%;
+}
+
+/* ─── Responsive ───────────────────────────────── */
+@media (max-width: 900px) {
+  .lecture-page {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .lecture-page .right {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .progress {
+    margin: 16px;
+    padding: 14px 18px;
+  }
+}

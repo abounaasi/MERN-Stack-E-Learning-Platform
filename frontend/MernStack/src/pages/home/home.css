@@ -1,0 +1,218 @@
+/* ─── Hero ─────────────────────────────────────── */
+.hero {
+  position: relative;
+  padding: 120px 24px 100px;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(138, 75, 175, 0.12), transparent 55%),
+    radial-gradient(circle at 80% 0%, rgba(138, 75, 175, 0.08), transparent 50%),
+    linear-gradient(180deg, #faf7fc 0%, #ffffff 100%);
+  overflow: hidden;
+  text-align: center;
+}
+
+.hero-content {
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.hero-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #8a4baf;
+  background: rgba(138, 75, 175, 0.1);
+  border: 1px solid rgba(138, 75, 175, 0.2);
+  border-radius: 999px;
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  font-size: 52px;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+  font-weight: 800;
+}
+
+.hero-accent {
+  color: #8a4baf;
+  position: relative;
+  white-space: nowrap;
+}
+
+.hero-sub {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  max-width: 640px;
+  margin: 0 auto 36px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 60px;
+}
+
+.btn-secondary {
+  background: transparent;
+  color: #8a4baf;
+  border: 2px solid #8a4baf;
+  padding: 10px 22px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background: #8a4baf;
+  color: white;
+}
+
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+}
+
+.hero-stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-stat strong {
+  font-size: 32px;
+  font-weight: 800;
+  color: #8a4baf;
+  line-height: 1;
+}
+
+.hero-stat span {
+  margin-top: 6px;
+  font-size: 14px;
+  color: #777;
+  letter-spacing: 0.3px;
+}
+
+/* ─── Features ─────────────────────────────────── */
+.features {
+  padding: 100px 24px;
+  background: #ffffff;
+}
+
+.features-head {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 56px;
+}
+
+.features-head h2 {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.features-head p {
+  font-size: 17px;
+  color: #666;
+  margin: 0;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #fff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 36px 28px;
+  text-align: center;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(138, 75, 175, 0.12);
+  border-color: rgba(138, 75, 175, 0.3);
+}
+
+.feature-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  font-size: 26px;
+  color: #8a4baf;
+  background: rgba(138, 75, 175, 0.1);
+  border-radius: 14px;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  font-size: 20px;
+  color: #1a1a1a;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.feature-card p {
+  font-size: 15px;
+  color: #666;
+  line-height: 1.6;
+  margin: 0;
+}
+
+/* ─── Responsive ───────────────────────────────── */
+@media (max-width: 900px) {
+  .features-grid {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding: 80px 20px 70px;
+  }
+
+  .hero h1 {
+    font-size: 36px;
+  }
+
+  .hero-sub {
+    font-size: 16px;
+  }
+
+  .hero-stats {
+    gap: 32px;
+  }
+
+  .hero-stat strong {
+    font-size: 26px;
+  }
+
+  .features {
+    padding: 70px 20px;
+  }
+
+  .features-head h2 {
+    font-size: 28px;
+  }
+}
