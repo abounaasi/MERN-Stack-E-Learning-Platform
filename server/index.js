@@ -24,12 +24,14 @@ import userRoutes from "./routes/user.js";
 import courseRoutes from "./routes/course.js";
 import adminRoutes from "./routes/admin.js";
 import enrollmentRoutes from "./routes/enrollment.js";
+import instructorRoutes from "./routes/instructor.js";
 
 //using routes
 app.use("/api", userRoutes);
 app.use("/api", courseRoutes);
 app.use("/api", adminRoutes);
 app.use("/api", enrollmentRoutes);
+app.use("/api", instructorRoutes);
 
 app.listen(5000, () => {
   console.log(`Server is running on http://localhost:${port}`);

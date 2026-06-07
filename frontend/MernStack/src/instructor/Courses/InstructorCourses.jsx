@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import Layout from "../Utils/Layout";
+import React, { useEffect, useState } from "react";
+import Layout from "../../admin/Utils/Layout";
 import { useNavigate } from "react-router-dom";
 import { CourseData } from "../../context/CourseContext";
 import CourseCard from "../../components/coursecard/CourseCard";
-import "./admincourses.css";
+import "./instructorcourses.css";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { server } from "../../main";
@@ -16,20 +16,40 @@ const categories = [
   "Artificial Intelligence",
 ];
 
-const AdminCourses = ({ user }) => {
+const InstructorCourses = ({ user }) => {
   const navigate = useNavigate();
 
-  if (user && user.role !== "admin") return navigate("/");
+  if (user && user.role !== "instructor") return navigate("/");
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [price, setPrice] = useState("");
-  const [createdBy, setCreatedBy] = useState("");
   const [duration, setDuration] = useState("");
   const [image, setImage] = useState("");
   const [imagePrev, setImagePrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
+  const [myCourses, setMyCourses] = useState([]);
+
+  const { fetchCourses } = CourseData();
+
+  async function fetchInstructorCourses() {
+    try {
+      const { data } = await axios.get(`${server}/api/instructor/courses`, {
+        headers: {
+          token: localStorage.getItem("token"),
+        },
+      });
+
+      setMyCourses(data.courses);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    fetchInstructorCourses();
+  }, []);
 
   const changeImageHandler = (e) => {
     const file = e.target.files[0];
@@ -43,8 +63,6 @@ const AdminCourses = ({ user }) => {
     };
   };
 
-  const { courses, fetchCourses } = CourseData();
-
   const submitHandler = async (e) => {
     e.preventDefault();
     setBtnLoading(true);
@@ -55,7 +73,6 @@ const AdminCourses = ({ user }) => {
     myForm.append("description", description);
     myForm.append("category", category);
     myForm.append("price", price);
-    myForm.append("createdBy", createdBy);
     myForm.append("duration", duration);
     myForm.append("file", image);
 
@@ -68,28 +85,29 @@ const AdminCourses = ({ user }) => {
 
       toast.success(data.message);
       setBtnLoading(false);
+      await fetchInstructorCourses();
       await fetchCourses();
       setImage("");
       setTitle("");
       setDescription("");
       setDuration("");
       setImagePrev("");
-      setCreatedBy("");
       setPrice("");
       setCategory("");
     } catch (error) {
       toast.error(error.response.data.message);
+      setBtnLoading(false);
     }
   };
 
   return (
     <Layout>
-      <div className="admin-courses">
+      <div className="instructor-courses">
         <div className="left">
-          <h1>All Courses</h1>
+          <h1>My Courses</h1>
           <div className="dashboard-content">
-            {courses && courses.length > 0 ? (
-              courses.map((e) => {
+            {myCourses && myCourses.length > 0 ? (
+              myCourses.map((e) => {
                 return <CourseCard key={e._id} course={e} />;
               })
             ) : (
@@ -124,14 +142,6 @@ const AdminCourses = ({ user }) => {
                   type="number"
                   value={price}
                   onChange={(e) => setPrice(e.target.value)}
-                  required
-                />
-
-                <label htmlFor="text">createdBy</label>
-                <input
-                  type="text"
-                  value={createdBy}
-                  onChange={(e) => setCreatedBy(e.target.value)}
                   required
                 />
 
@@ -174,4 +184,4 @@ const AdminCourses = ({ user }) => {
   );
 };
 
-export default AdminCourses;
+export default InstructorCourses;

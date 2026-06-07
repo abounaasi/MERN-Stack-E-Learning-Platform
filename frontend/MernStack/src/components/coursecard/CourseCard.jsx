@@ -37,7 +37,7 @@ const CourseCard = ({ course }) => {
       <p className="course-price">${course.price}</p>
       {isAuth ? (
         <>
-          {user && user.role !== "admin" ? (
+          {user && user.role === "user" ? (
             <>
               {user.subscription.includes(course._id) ? (
                 <button
@@ -70,15 +70,17 @@ const CourseCard = ({ course }) => {
         </button>
       )}
 
-      {user && user.role === "admin" && (
-        <button
-          onClick={() => deleteHandler(course._id)}
-          className="common-btn"
-          style={{ background: "red" }}
-        >
-          Delete
-        </button>
-      )}
+      {user &&
+        (user.role === "admin" ||
+          (user.role === "instructor" && course.instructor === user._id)) && (
+          <button
+            onClick={() => deleteHandler(course._id)}
+            className="common-btn"
+            style={{ background: "red" }}
+          >
+            Delete
+          </button>
+        )}
     </div>
   );
 };

@@ -9,10 +9,11 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [role, setRole] = useState("user");
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    await registerUser(name, email, password, navigate);
+    await registerUser(name, email, password, navigate, role);
   };
   return (
     <div className="auth-page">
@@ -43,6 +44,16 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)}
             required
           />
+
+          <label htmlFor="role">I want to join as</label>
+          <select
+            id="role"
+            value={role}
+            onChange={(e) => setRole(e.target.value)}
+          >
+            <option value="user">Student</option>
+            <option value="instructor">Instructor</option>
+          </select>
 
           <button type="submit" disabled={btnLoading} className="common-btn">
             {btnLoading ? "Please Wait..." : "Register"}

@@ -41,13 +41,26 @@ const Account = ({ user }) => {
           >
             <MdDashboard /> Dashboard
           </button>
-          <button
-            onClick={() => navigate(`/admin/dashboard`)}
-            className="common-btn"
-          >
-            <MdDashboard />
-            Admin Dashboard
-          </button>
+
+          {user.role === "admin" && (
+            <button
+              onClick={() => navigate(`/admin/dashboard`)}
+              className="common-btn"
+            >
+              <MdDashboard />
+              Admin Dashboard
+            </button>
+          )}
+
+          {user.role === "instructor" && (
+            <button
+              onClick={() => navigate(`/instructor/dashboard`)}
+              className="common-btn"
+            >
+              <MdDashboard />
+              Instructor Dashboard
+            </button>
+          )}
 
           <button onClick={logoutHandler} className="btn-logout">
             <IoMdLogOut /> Logout

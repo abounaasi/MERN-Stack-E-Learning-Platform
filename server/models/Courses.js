@@ -29,6 +29,10 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  instructor: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
   createdAt: {
     type: Date,
     default: Date.now,

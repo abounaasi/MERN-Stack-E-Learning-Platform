@@ -17,8 +17,9 @@ import Dashboard from "./pages/dashboard/Dashboard";
 import Coursestudy from "./pages/coursestudy/Coursestudy";
 import Lecture from "./pages/lecture/Lecture";
 import AdminDashboard from "./admin/Dashboard/AdminDashboard";
-import AdminCourses from "./admin/Courses/AdminCourses";
 import AdminUsers from "./admin/Users/AdminUsers";
+import InstructorDashboard from "./instructor/Dashboard/InstructorDashboard";
+import InstructorCourses from "./instructor/Courses/InstructorCourses";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 
@@ -74,12 +75,16 @@ const App = () => {
               element={isAuth ? <AdminDashboard user={user} /> : <Login />}
             />
             <Route
-              path="/admin/course"
-              element={isAuth ? <AdminCourses user={user} /> : <Login />}
-            />
-            <Route
               path="/admin/users"
               element={isAuth ? <AdminUsers user={user} /> : <Login />}
+            />
+            <Route
+              path="/instructor/dashboard"
+              element={isAuth ? <InstructorDashboard user={user} /> : <Login />}
+            />
+            <Route
+              path="/instructor/courses"
+              element={isAuth ? <InstructorCourses user={user} /> : <Login />}
             />
           </Routes>
 

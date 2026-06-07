@@ -16,10 +16,14 @@ export const register = TryCatch(async (req, res) => {
 
   const hashPassword = await bcrypt.hash(password, 10);
 
+  // only "user" or "instructor" may be chosen at signup; admin is never self-selectable
+  const role = req.body.role === "instructor" ? "instructor" : "user";
+
   user = {
     name,
     email,
     password: hashPassword,
+    role,
   };
 
   const otp = Math.floor(Math.random() * 1000000);
@@ -66,6 +70,7 @@ export const verifyUser = TryCatch(async (req, res) => {
     name: verify.user.name,
     email: verify.user.email,
     password: verify.user.password,
+    role: verify.user.role,
   });
 
   res.json({

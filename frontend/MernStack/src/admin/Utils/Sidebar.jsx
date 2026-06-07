@@ -7,11 +7,17 @@ import { UserData } from "../../context/UserContext";
 
 const Sidebar = () => {
   const { user } = UserData();
+
+  const dashboardLink =
+    user && user.role === "instructor"
+      ? "/instructor/dashboard"
+      : "/admin/dashboard";
+
   return (
     <div className="sidebar">
       <ul>
         <li>
-          <Link to={"/admin/dashboard"}>
+          <Link to={dashboardLink}>
             <div className="icon">
               <AiFillHome />
             </div>
@@ -19,14 +25,16 @@ const Sidebar = () => {
           </Link>
         </li>
 
-        <li>
-          <Link to={"/admin/course"}>
-            <div className="icon">
-              <FaBook />
-            </div>
-            <span>Courses</span>
-          </Link>
-        </li>
+        {user && user.role === "instructor" && (
+          <li>
+            <Link to={"/instructor/courses"}>
+              <div className="icon">
+                <FaBook />
+              </div>
+              <span>Courses</span>
+            </Link>
+          </li>
+        )}
 
         {user && user.role === "admin" && (
           <li>
