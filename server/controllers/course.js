@@ -28,6 +28,12 @@ export const fetchLectures = TryCatch(async (req, res) => {
     return res.json({ lectures });
   }
 
+  // the instructor who owns the course can view its lectures
+  const course = await Courses.findById(req.params.id);
+  if (course && course.instructor?.toString() === user._id.toString()) {
+    return res.json({ lectures });
+  }
+
   if (!user.subscription.includes(req.params.id))
     return res.status(400).json({
       message: "You have not subscribed to this course",
@@ -41,6 +47,12 @@ export const fetchLecture = TryCatch(async (req, res) => {
   const user = await User.findById(req.user._id);
 
   if (user.role == "admin") {
+    return res.json({ lecture });
+  }
+
+  // the instructor who owns the course can view its lectures
+  const course = await Courses.findById(lecture.course);
+  if (course && course.instructor?.toString() === user._id.toString()) {
     return res.json({ lecture });
   }
 

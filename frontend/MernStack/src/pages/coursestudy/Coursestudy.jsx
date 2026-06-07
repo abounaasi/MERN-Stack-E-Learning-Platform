@@ -10,7 +10,7 @@ const CourseStudy = ({ user }) => {
   const { fetchCourse, course } = CourseData();
   const navigate = useNavigate();
 
-  if (user && user.role !== "admin" && !user.subscription.includes(params.id))
+  if (user && user.role === "user" && !user.subscription.includes(params.id))
     return navigate("/");
 
   useEffect(() => {

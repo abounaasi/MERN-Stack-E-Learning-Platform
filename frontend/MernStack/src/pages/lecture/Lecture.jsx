@@ -20,9 +20,25 @@ const Lecture = ({ user }) => {
   const [video, setvideo] = useState("");
   const [videoPrev, setVideoPrev] = useState("");
   const [btnLoading, setBtnLoading] = useState(false);
+  const [course, setCourse] = useState(null);
 
-  if (user && user.role !== "admin" && !user.subscription.includes(params.id))
+  if (user && user.role === "user" && !user.subscription.includes(params.id))
     return navigate("/");
+
+  // admin, or the instructor who owns this course, can manage lectures
+  const canManage =
+    user &&
+    (user.role === "admin" ||
+      (user.role === "instructor" && course && course.instructor === user._id));
+
+  async function fetchCourse() {
+    try {
+      const { data } = await axios.get(`${server}/api/course/${params.id}`);
+      setCourse(data.course);
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   async function fetchLectures() {
     try {
@@ -164,6 +180,7 @@ const Lecture = ({ user }) => {
   console.log(progress);
 
   useEffect(() => {
+    fetchCourse();
     fetchLectures();
     fetchProgress();
   }, []);
@@ -205,7 +222,7 @@ const Lecture = ({ user }) => {
               )}
             </div>
             <div className="right">
-              {user && user.role === "admin" && (
+              {canManage && (
                 <button className="common-btn" onClick={() => setShow(!show)}>
                   {show ? "Close" : "Add Lecture +"}
                 </button>
@@ -278,7 +295,7 @@ const Lecture = ({ user }) => {
                           </span>
                         )}
                     </div>
-                    {user && user.role === "admin" && (
+                    {canManage && (
                       <button
                         className="common-btn"
                         style={{ background: "red" }}
