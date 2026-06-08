@@ -1,0 +1,253 @@
+.room-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 32px 24px 60px;
+}
+
+.room-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+
+.room-header h2 {
+  font-size: 26px;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+}
+
+.room-header p {
+  font-size: 14px;
+  color: #8a4baf;
+  font-weight: 600;
+  margin: 0;
+}
+
+.leave-btn {
+  background: #fff;
+  border: 1px solid #e0626c;
+  color: #e0626c;
+  padding: 9px 18px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.leave-btn:hover {
+  background: #e0626c;
+  color: #fff;
+}
+
+.room-layout {
+  display: flex;
+  gap: 24px;
+  align-items: stretch;
+  flex-wrap: wrap;
+}
+
+/* ─── Chat ─────────────────────────────────────── */
+.chat-panel {
+  flex: 1 1 58%;
+  min-width: 300px;
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  overflow: hidden;
+  height: 560px;
+  box-shadow: 0 6px 18px rgba(138, 75, 175, 0.05);
+}
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: #faf7fc;
+}
+
+.chat-empty {
+  text-align: center;
+  color: #aaa;
+  margin: auto;
+  font-size: 14px;
+}
+
+.message {
+  align-self: flex-start;
+  max-width: 75%;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  padding: 9px 13px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.message.own {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #8a4baf, #9d5bc4);
+  border-color: transparent;
+  color: #fff;
+}
+
+.message-sender {
+  font-size: 11px;
+  font-weight: 700;
+  opacity: 0.7;
+}
+
+.message.own .message-sender {
+  opacity: 0.85;
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.4;
+  word-break: break-word;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+  padding: 14px;
+  border-top: 1px solid #ececec;
+  background: #fff;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 11px 14px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #fafafa;
+}
+
+.chat-input input:focus {
+  outline: none;
+  border-color: #8a4baf;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(138, 75, 175, 0.15);
+}
+
+/* ─── Side panel ───────────────────────────────── */
+.side-panel {
+  flex: 1 1 320px;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.members-box,
+.notes-box {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 22px;
+  box-shadow: 0 6px 18px rgba(138, 75, 175, 0.05);
+}
+
+.members-box h3,
+.notes-box h3 {
+  font-size: 17px;
+  color: #8a4baf;
+  margin: 0 0 14px;
+}
+
+.members-box ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.members-box li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 14px;
+  color: #333;
+  padding: 8px 12px;
+  background: #faf7fc;
+  border-radius: 8px;
+}
+
+.owner-tag {
+  font-size: 11px;
+  font-weight: 700;
+  color: #8a4baf;
+  background: #f3e8fb;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.invite-form {
+  display: flex;
+  gap: 8px;
+}
+
+.invite-form input {
+  flex: 1;
+  min-width: 0;
+  padding: 9px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 13px;
+  background: #fafafa;
+}
+
+.invite-form input:focus {
+  outline: none;
+  border-color: #8a4baf;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(138, 75, 175, 0.15);
+}
+
+.invite-form .common-btn {
+  padding: 9px 16px;
+  white-space: nowrap;
+}
+
+.notes-box textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  font-size: 14px;
+  font-family: inherit;
+  background: #fafafa;
+  resize: vertical;
+  margin-bottom: 12px;
+}
+
+.notes-box textarea:focus {
+  outline: none;
+  border-color: #8a4baf;
+  background: #fff;
+  box-shadow: 0 0 0 3px rgba(138, 75, 175, 0.15);
+}
+
+.notes-box .common-btn {
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .side-panel {
+    max-width: 100%;
+    width: 100%;
+  }
+}

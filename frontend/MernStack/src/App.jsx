@@ -23,6 +23,8 @@ import InstructorCourses from "./instructor/Courses/InstructorCourses";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
 import Certificate from "./pages/certificate/Certificate";
+import StudyGroups from "./pages/groups/StudyGroups";
+import StudyGroupRoom from "./pages/groups/StudyGroupRoom";
 
 const App = () => {
   const { isAuth, user, loading } = UserData();
@@ -71,6 +73,14 @@ const App = () => {
             <Route
               path="/lectures/:id"
               element={isAuth ? <Lecture user={user} /> : <Login />}
+            />
+            <Route
+              path="/groups"
+              element={isAuth ? <StudyGroups /> : <Login />}
+            />
+            <Route
+              path="/group/:id"
+              element={isAuth ? <StudyGroupRoom /> : <Login />}
             />
             <Route
               path="/admin/dashboard"

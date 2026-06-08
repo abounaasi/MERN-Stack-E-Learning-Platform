@@ -32,6 +32,11 @@ const Header = () => {
           Dashboard
         </NavLink>
       )}
+      {isAuth && (
+        <NavLink to="/groups" onClick={onClick} className={className}>
+          Groups
+        </NavLink>
+      )}
     </>
   );
 
