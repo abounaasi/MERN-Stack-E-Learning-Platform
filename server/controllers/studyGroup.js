@@ -4,8 +4,11 @@ import { Message } from "../models/Message.js";
 import { Courses } from "../models/Courses.js";
 import { User } from "../models/User.js";
 
+// members may be raw ObjectIds or populated user docs — handle both
 const isMember = (group, userId) =>
-  group.members.some((m) => m.toString() === userId.toString());
+  group.members.some(
+    (m) => (m._id ? m._id : m).toString() === userId.toString(),
+  );
 
 export const createGroup = TryCatch(async (req, res) => {
   const { name, courseId } = req.body;
