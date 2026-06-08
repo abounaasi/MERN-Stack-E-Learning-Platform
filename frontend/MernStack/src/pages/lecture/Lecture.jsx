@@ -6,6 +6,7 @@ import { server } from "../../main";
 import Loading from "../../components/loading/Loading";
 import toast from "react-hot-toast";
 import { TiTick } from "react-icons/ti";
+import Flashcards from "../../components/flashcards/Flashcards";
 
 const Lecture = ({ user }) => {
   const [lectures, setLectures] = useState([]);
@@ -273,6 +274,8 @@ const Lecture = ({ user }) => {
 
                       <h1>{lecture.title}</h1>
                       <h3>{lecture.description}</h3>
+
+                      <Flashcards lectureId={lecture._id} />
                     </>
                   ) : (
                     <h1>Please Select a Lecture</h1>

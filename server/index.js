@@ -36,6 +36,7 @@ import enrollmentRoutes from "./routes/enrollment.js";
 import instructorRoutes from "./routes/instructor.js";
 import certificateRoutes from "./routes/certificate.js";
 import studyGroupRoutes from "./routes/studyGroup.js";
+import flashcardRoutes from "./routes/flashcard.js";
 
 //using routes
 app.use("/api", userRoutes);
@@ -45,6 +46,7 @@ app.use("/api", enrollmentRoutes);
 app.use("/api", instructorRoutes);
 app.use("/api", certificateRoutes);
 app.use("/api", studyGroupRoutes);
+app.use("/api", flashcardRoutes);
 
 server.listen(5000, () => {
   console.log(`Server is running on http://localhost:${port}`);
