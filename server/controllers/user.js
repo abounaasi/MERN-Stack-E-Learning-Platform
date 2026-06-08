@@ -110,6 +110,18 @@ export const myProfile = TryCatch(async (req, res) => {
   res.json({ user });
 });
 
+export const getStreak = TryCatch(async (req, res) => {
+  const user = await User.findById(req.user._id).select(
+    "currentStreak bestStreak lastActivityDate",
+  );
+
+  res.json({
+    currentStreak: user.currentStreak,
+    bestStreak: user.bestStreak,
+    lastActivityDate: user.lastActivityDate,
+  });
+});
+
 export const forgotPassword = TryCatch(async (req, res) => {
   const { email } = req.body;
 

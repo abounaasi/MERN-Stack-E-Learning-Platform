@@ -22,6 +22,7 @@ import InstructorDashboard from "./instructor/Dashboard/InstructorDashboard";
 import InstructorCourses from "./instructor/Courses/InstructorCourses";
 import ForgotPassword from "./pages/auth/ForgotPassword";
 import ResetPassword from "./pages/auth/ResetPassword";
+import Certificate from "./pages/certificate/Certificate";
 
 const App = () => {
   const { isAuth, user, loading } = UserData();
@@ -36,6 +37,7 @@ const App = () => {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/certificate/:id" element={<Certificate />} />
             <Route
               path="/account"
               element={isAuth ? <Account user={user} /> : <Login />}

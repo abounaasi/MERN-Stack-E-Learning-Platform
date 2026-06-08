@@ -49,6 +49,11 @@ const Lecture = ({ user }) => {
       });
       setLectures(data.lectures);
       setLoading(false);
+
+      // auto-open the first lecture so the player isn't empty on arrival
+      if (data.lectures.length > 0 && !lecture.video) {
+        fetchLecture(data.lectures[0]._id);
+      }
     } catch (error) {
       console.log(error);
       setLoading(false);
@@ -177,7 +182,16 @@ const Lecture = ({ user }) => {
     }
   };
 
-  console.log(progress);
+  // navigation between lectures
+  const currentIndex = lectures.findIndex((l) => l._id === lecture._id);
+  const goTo = (index) => {
+    if (index >= 0 && index < lectures.length) {
+      fetchLecture(lectures[index]._id);
+    }
+  };
+
+  const isCompleted = (id) =>
+    progress[0] && progress[0].completedLectures.includes(id);
 
   useEffect(() => {
     fetchCourse();
@@ -202,16 +216,61 @@ const Lecture = ({ user }) => {
                 <>
                   {lecture.video ? (
                     <>
-                      <video
-                        src={`${server}/${lecture.video}`}
-                        width={"100%"}
-                        controls
-                        controlsList="nodownload noremoteplayback"
-                        disablePictureInPicture
-                        disableRemotePlayback
-                        autoPlay
-                        onEnded={() => addProgress(lecture._id)}
-                      ></video>
+                      {lecture.video.startsWith("http") ? (
+                        <div className="video-wrapper">
+                          <iframe
+                            src={lecture.video}
+                            title={lecture.title}
+                            frameBorder={"0"}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                          ></iframe>
+                        </div>
+                      ) : (
+                        <video
+                          src={`${server}/${lecture.video}`}
+                          width={"100%"}
+                          controls
+                          controlsList="nodownload noremoteplayback"
+                          disablePictureInPicture
+                          disableRemotePlayback
+                          autoPlay
+                          onEnded={() => addProgress(lecture._id)}
+                        ></video>
+                      )}
+
+                      <div className="lecture-controls">
+                        <button
+                          className="nav-btn"
+                          onClick={() => goTo(currentIndex - 1)}
+                          disabled={currentIndex <= 0}
+                        >
+                          ◀ Previous
+                        </button>
+
+                        {lecture.video.startsWith("http") &&
+                          (isCompleted(lecture._id) ? (
+                            <button className="mark-btn completed" disabled>
+                              ✓ Completed
+                            </button>
+                          ) : (
+                            <button
+                              className="mark-btn"
+                              onClick={() => addProgress(lecture._id)}
+                            >
+                              Mark as Completed
+                            </button>
+                          ))}
+
+                        <button
+                          className="nav-btn"
+                          onClick={() => goTo(currentIndex + 1)}
+                          disabled={currentIndex >= lectures.length - 1}
+                        >
+                          Next ▶
+                        </button>
+                      </div>
+
                       <h1>{lecture.title}</h1>
                       <h3>{lecture.description}</h3>
                     </>
@@ -275,25 +334,30 @@ const Lecture = ({ user }) => {
                 </div>
               )}
 
+              <h2 className="course-content-title">
+                Course Content
+                {lectures && lectures.length > 0 && (
+                  <span> ({lectures.length} lectures)</span>
+                )}
+              </h2>
+
               {lectures && lectures.length > 0 ? (
                 lectures.map((e, i) => (
-                  <>
+                  <React.Fragment key={e._id}>
                     <div
                       onClick={() => fetchLecture(e._id)}
-                      key={i}
                       className={`lecture-number ${
-                        lecture._id === e._id && "active"
+                        lecture._id === e._id ? "active" : ""
                       }`}
                     >
                       <span>
                         {i + 1}. {e.title}
                       </span>
-                      {progress[0] &&
-                        progress[0].completedLectures.includes(e._id) && (
-                          <span className="completed-badge">
-                            <TiTick />
-                          </span>
-                        )}
+                      {isCompleted(e._id) && (
+                        <span className="completed-badge">
+                          <TiTick />
+                        </span>
+                      )}
                     </div>
                     {canManage && (
                       <button
@@ -304,7 +368,7 @@ const Lecture = ({ user }) => {
                         Delete {e.title}
                       </button>
                     )}
-                  </>
+                  </React.Fragment>
                 ))
               ) : (
                 <p>No Lectures Yet!</p>

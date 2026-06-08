@@ -1,6 +1,7 @@
 import express from "express";
 import {
   forgotPassword,
+  getStreak,
   loginUser,
   myProfile,
   register,
@@ -17,4 +18,5 @@ router.post("/user/login", loginUser);
 router.get("/user/me", isAuth, myProfile);
 router.post("/user/forgot", forgotPassword);
 router.post("/user/reset", resetPassword);
+router.get("/user/streak", isAuth, getStreak);
 export default router;

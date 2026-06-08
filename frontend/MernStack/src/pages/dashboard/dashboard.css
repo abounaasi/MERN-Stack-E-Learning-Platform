@@ -23,6 +23,61 @@
   margin: 0;
 }
 
+.streak-row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  max-width: 700px;
+  margin: 0 auto 56px;
+}
+
+.streak-card {
+  flex: 1 1 260px;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  background: linear-gradient(135deg, #8a4baf 0%, #6b3f86 100%);
+  color: #ffffff;
+  padding: 24px 28px;
+  border-radius: 16px;
+  box-shadow: 0 10px 24px rgba(138, 75, 175, 0.25);
+}
+
+.streak-card.best {
+  background: linear-gradient(135deg, #b078d3 0%, #8a4baf 100%);
+}
+
+.streak-card .streak-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  font-size: 26px;
+  flex-shrink: 0;
+}
+
+.streak-card .streak-info {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+}
+
+.streak-card .streak-value {
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.streak-card .streak-label {
+  font-size: 13px;
+  opacity: 0.85;
+  margin-top: 4px;
+  letter-spacing: 0.3px;
+}
+
 .dashboard-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -37,6 +92,74 @@
   padding: 60px 20px;
   color: #888;
   font-size: 16px;
+}
+
+.certificates-section {
+  max-width: 1200px;
+  margin: 56px auto 0;
+}
+
+.certificates-section h3 {
+  font-size: 22px;
+  color: #1a1a1a;
+  font-weight: 700;
+  margin: 0 0 20px;
+}
+
+.certificates-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 18px;
+}
+
+.certificate-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 18px 20px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.certificate-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(138, 75, 175, 0.4);
+  box-shadow: 0 8px 20px rgba(138, 75, 175, 0.12);
+}
+
+.certificate-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #f3e8fb;
+  color: #8a4baf;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.certificate-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.certificate-item-course {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.certificate-item-view {
+  font-size: 13px;
+  color: #8a4baf;
+  font-weight: 600;
 }
 
 @media (max-width: 768px) {

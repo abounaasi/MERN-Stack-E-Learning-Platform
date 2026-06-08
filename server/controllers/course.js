@@ -3,6 +3,7 @@ import { Courses } from "../models/Courses.js";
 import { Lecture } from "../models/Lecture.js";
 import { User } from "../models/User.js";
 import { Progress } from "../models/Progress.js";
+import { issueCertificateIfComplete } from "./certificate.js";
 
 export const getAllCourses = TryCatch(async (req, res) => {
   const courses = await Courses.find();
@@ -72,8 +73,57 @@ export const getMyCourses = TryCatch(async (req, res) => {
   });
 });
 
+// normalize a date to midnight so streaks compare whole days, not times
+const startOfDay = (d) => {
+  const date = new Date(d);
+  date.setHours(0, 0, 0, 0);
+  return date;
+};
+
+// update the student's daily learning streak (one grace day allowed)
+const updateStreak = async (user) => {
+  const today = startOfDay(new Date());
+
+  if (!user.lastActivityDate) {
+    // first ever learning day
+    user.currentStreak = 1;
+    user.graceUsed = false;
+  } else {
+    const last = startOfDay(user.lastActivityDate);
+    const dayMs = 24 * 60 * 60 * 1000;
+    const gap = Math.round((today - last) / dayMs);
+
+    if (gap === 0) {
+      // already counted today — nothing changes
+      return;
+    } else if (gap === 1) {
+      // consecutive day → continue the streak, grace refreshes
+      user.currentStreak += 1;
+      user.graceUsed = false;
+    } else if (gap === 2 && !user.graceUsed) {
+      // missed exactly one day and grace is available → forgive it
+      user.currentStreak += 1;
+      user.graceUsed = true;
+    } else {
+      // missed too many days (or grace already spent) → reset
+      user.currentStreak = 1;
+      user.graceUsed = false;
+    }
+  }
+
+  if (user.currentStreak > user.bestStreak) {
+    user.bestStreak = user.currentStreak;
+  }
+
+  user.lastActivityDate = today;
+  await user.save();
+};
+
 export const addProgress = TryCatch(async (req, res) => {
   const { course, lectureId } = req.query;
+
+  // completing a lecture counts as learning activity for today
+  await updateStreak(req.user);
 
   let progress = await Progress.findOne({
     user: req.user._id,
@@ -88,6 +138,8 @@ export const addProgress = TryCatch(async (req, res) => {
       completedLectures: [lectureId],
     });
 
+    await issueCertificateIfComplete(req.user, course);
+
     return res.status(201).json({ message: "new Progress added" });
   }
 
@@ -97,6 +149,8 @@ export const addProgress = TryCatch(async (req, res) => {
 
   progress.completedLectures.push(lectureId);
   await progress.save();
+
+  await issueCertificateIfComplete(req.user, course);
 
   res.status(201).json({ message: "new Progress added" });
 });

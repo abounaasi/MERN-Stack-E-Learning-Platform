@@ -20,14 +20,41 @@ const CourseStudy = ({ user }) => {
     <>
       {course && (
         <div className="course-study-page">
-          <img src={`${server}/${course.image}`} alt="" width={350} />
-          <h2>{course.title}</h2>
-          <h4>{course.description}</h4>
-          <h5>by - {course.createdBy}</h5>
-          <h5>Duration - {course.duration} weeks</h5>
-          <Link to={`/lectures/${course._id}`}>
-            <h2>Lectures</h2>
-          </Link>
+          <div className="study-card">
+            <div className="study-image">
+              <img src={`${server}/${course.image}`} alt={course.title} />
+            </div>
+
+            <div className="study-info">
+              {course.category && (
+                <span className="study-badge">{course.category}</span>
+              )}
+
+              <h1 className="study-title">{course.title}</h1>
+              <p className="study-description">{course.description}</p>
+
+              <ul className="study-meta">
+                <li>
+                  <span className="meta-label">Instructor</span>
+                  <span className="meta-value">{course.createdBy}</span>
+                </li>
+                <li>
+                  <span className="meta-label">Duration</span>
+                  <span className="meta-value">{course.duration} weeks</span>
+                </li>
+                <li>
+                  <span className="meta-label">Price</span>
+                  <span className="meta-value">
+                    {course.price > 0 ? `$${course.price}` : "Free"}
+                  </span>
+                </li>
+              </ul>
+
+              <Link to={`/lectures/${course._id}`} className="study-btn">
+                Start Learning →
+              </Link>
+            </div>
+          </div>
         </div>
       )}
     </>

@@ -30,6 +30,19 @@ const schema = new mongoose.Schema(
       },
     ],
     resetPasswordExpire: Date,
+    currentStreak: {
+      type: Number,
+      default: 0,
+    },
+    bestStreak: {
+      type: Number,
+      default: 0,
+    },
+    lastActivityDate: Date,
+    graceUsed: {
+      type: Boolean,
+      default: false,
+    },
   },
   {
     timestamps: true,
