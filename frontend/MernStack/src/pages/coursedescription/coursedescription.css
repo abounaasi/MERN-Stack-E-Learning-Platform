@@ -45,6 +45,31 @@
   line-height: 1.2;
 }
 
+.course-rating-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.course-rating-avg {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.course-rating-count {
+  font-size: 14px;
+  color: #888;
+}
+
+.course-rating-empty {
+  font-size: 14px;
+  color: #aaa;
+  font-style: italic;
+  margin-bottom: 14px;
+}
+
 .course-description .course-info p {
   font-size: 15px;
   color: #555;

@@ -78,6 +78,64 @@
   letter-spacing: 0.3px;
 }
 
+.dashboard-tool-card {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  max-width: 700px;
+  margin: 0 auto 56px;
+  padding: 20px 24px;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  text-decoration: none;
+  transition: transform 0.15s ease, box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.dashboard-tool-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(138, 75, 175, 0.4);
+  box-shadow: 0 8px 20px rgba(138, 75, 175, 0.12);
+}
+
+.dashboard-tool-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #f3e8fb;
+  color: #8a4baf;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.dashboard-tool-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.dashboard-tool-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.dashboard-tool-desc {
+  font-size: 13px;
+  color: #666;
+}
+
+.dashboard-tool-arrow {
+  font-size: 20px;
+  color: #8a4baf;
+  font-weight: 700;
+}
+
 .dashboard-content {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));

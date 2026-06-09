@@ -4,19 +4,48 @@ import { Lecture } from "../models/Lecture.js";
 import { User } from "../models/User.js";
 import { Progress } from "../models/Progress.js";
 import { issueCertificateIfComplete } from "./certificate.js";
+import { attachReviewStats } from "./review.js";
+
+export const attachEnrollmentCounts = async (courses) => {
+  if (!courses.length) return new Map();
+
+  const courseIds = courses.map((c) => c._id);
+  const counts = await User.aggregate([
+    { $unwind: "$subscription" },
+    { $match: { subscription: { $in: courseIds } } },
+    { $group: { _id: "$subscription", enrollmentCount: { $sum: 1 } } },
+  ]);
+
+  return new Map(
+    counts.map((c) => [c._id.toString(), c.enrollmentCount]),
+  );
+};
+
+export const attachCourseMeta = async (courses) => {
+  const withReviews = await attachReviewStats(courses);
+  const enrollMap = await attachEnrollmentCounts(courses);
+
+  return withReviews.map((c) => ({
+    ...c,
+    enrollmentCount: enrollMap.get(c._id.toString()) || 0,
+  }));
+};
 
 export const getAllCourses = TryCatch(async (req, res) => {
   const courses = await Courses.find();
+  const withMeta = await attachCourseMeta(courses);
   res.json({
-    courses,
+    courses: withMeta,
   });
 });
 
 export const getSingleCourse = TryCatch(async (req, res) => {
   const course = await Courses.findById(req.params.id);
+  if (!course) return res.status(404).json({ message: "Course not found" });
 
+  const [withStats] = await attachCourseMeta([course]);
   res.json({
-    course,
+    course: withStats,
   });
 });
 

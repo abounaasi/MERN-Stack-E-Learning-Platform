@@ -7,6 +7,8 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { UserData } from "../../context/UserContext";
 import Loading from "../../components/loading/Loading";
+import StarRating from "../../components/reviews/StarRating";
+import Reviews from "../../components/reviews/Reviews";
 
 const CourseDescription = ({ user }) => {
   const params = useParams();
@@ -62,6 +64,26 @@ const CourseDescription = ({ user }) => {
           />
           <div className="course-info">
             <h2>{course.title}</h2>
+            <div className="course-rating-row">
+              {course.reviewCount > 0 ? (
+                <>
+                  <StarRating
+                    value={Math.round(course.averageRating)}
+                    readonly
+                    size={18}
+                  />
+                  <span className="course-rating-avg">
+                    {course.averageRating.toFixed(1)}
+                  </span>
+                  <span className="course-rating-count">
+                    ({course.reviewCount} review
+                    {course.reviewCount === 1 ? "" : "s"})
+                  </span>
+                </>
+              ) : (
+                <span className="course-rating-empty">No reviews yet</span>
+              )}
+            </div>
             <p>
               <span className="course-meta-label">Instructor:</span>
               {course.createdBy}
@@ -97,6 +119,13 @@ const CourseDescription = ({ user }) => {
             {enrolling ? "Enrolling..." : "Enroll Now"}
           </button>
         )}
+
+        <Reviews
+          courseId={course._id}
+          isEnrolled={isEnrolled}
+          userId={user?._id}
+          onReviewChange={() => fetchCourse(params.id)}
+        />
       </div>
     </div>
   );

@@ -25,6 +25,11 @@ const schema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  level: {
+    type: String,
+    enum: ["beginner", "intermediate", "advanced"],
+    default: "beginner",
+  },
   createdBy: {
     type: String,
     required: true,

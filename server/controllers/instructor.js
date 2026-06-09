@@ -13,7 +13,7 @@ const canManage = (course, user) =>
   user.role === "admin" || course.instructor?.toString() === user._id.toString();
 
 export const createCourse = TryCatch(async (req, res) => {
-  const { title, description, category, duration, price } = req.body;
+  const { title, description, category, duration, price, level } = req.body;
 
   const image = req.file;
 
@@ -21,6 +21,9 @@ export const createCourse = TryCatch(async (req, res) => {
     title,
     description,
     category,
+    level: ["beginner", "intermediate", "advanced"].includes(level)
+      ? level
+      : "beginner",
     createdBy: req.user.name,
     instructor: req.user._id,
     image: image?.path,

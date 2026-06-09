@@ -4,7 +4,7 @@ import { CourseData } from "../../context/CourseContext";
 import CourseCard from "../../components/coursecard/CourseCard";
 import axios from "axios";
 import { server } from "../../main";
-import { FaFire, FaTrophy, FaAward } from "react-icons/fa";
+import { FaFire, FaTrophy, FaAward, FaChartBar, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Dashboard = () => {
@@ -75,6 +75,32 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+
+      <Link to="/skill-gap" className="dashboard-tool-card">
+        <div className="dashboard-tool-icon">
+          <FaChartBar />
+        </div>
+        <div className="dashboard-tool-info">
+          <span className="dashboard-tool-title">Skill Gap Analyzer</span>
+          <span className="dashboard-tool-desc">
+            Find missing skills and get personalized course recommendations
+          </span>
+        </div>
+        <span className="dashboard-tool-arrow">→</span>
+      </Link>
+
+      <Link to="/wishlist" className="dashboard-tool-card">
+        <div className="dashboard-tool-icon">
+          <FaHeart />
+        </div>
+        <div className="dashboard-tool-info">
+          <span className="dashboard-tool-title">My Wishlist</span>
+          <span className="dashboard-tool-desc">
+            View saved courses and enroll when you're ready
+          </span>
+        </div>
+        <span className="dashboard-tool-arrow">→</span>
+      </Link>
 
       <div className="dashboard-content">
         {mycourse && mycourse.length > 0 ? (

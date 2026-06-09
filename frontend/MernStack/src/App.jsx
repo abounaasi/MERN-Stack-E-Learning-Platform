@@ -25,6 +25,9 @@ import ResetPassword from "./pages/auth/ResetPassword";
 import Certificate from "./pages/certificate/Certificate";
 import StudyGroups from "./pages/groups/StudyGroups";
 import StudyGroupRoom from "./pages/groups/StudyGroupRoom";
+import LearningPath from "./pages/learningpath/LearningPath";
+import SkillGap from "./pages/skillgap/SkillGap";
+import Wishlist from "./pages/wishlist/Wishlist";
 
 const App = () => {
   const { isAuth, user, loading } = UserData();
@@ -77,6 +80,18 @@ const App = () => {
             <Route
               path="/groups"
               element={isAuth ? <StudyGroups /> : <Login />}
+            />
+            <Route
+              path="/learning-path"
+              element={isAuth ? <LearningPath /> : <Login />}
+            />
+            <Route
+              path="/skill-gap"
+              element={isAuth ? <SkillGap /> : <Login />}
+            />
+            <Route
+              path="/wishlist"
+              element={isAuth ? <Wishlist /> : <Login />}
             />
             <Route
               path="/group/:id"

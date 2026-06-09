@@ -37,6 +37,11 @@ const Header = () => {
           Groups
         </NavLink>
       )}
+      {isAuth && (
+        <NavLink to="/learning-path" onClick={onClick} className={className}>
+          Learning Path
+        </NavLink>
+      )}
     </>
   );
 

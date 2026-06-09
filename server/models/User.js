@@ -29,6 +29,12 @@ const schema = new mongoose.Schema(
         ref: "Courses",
       },
     ],
+    wishlist: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Courses",
+      },
+    ],
     resetPasswordExpire: Date,
     currentStreak: {
       type: Number,

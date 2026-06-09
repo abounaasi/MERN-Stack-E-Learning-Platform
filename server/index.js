@@ -37,6 +37,10 @@ import instructorRoutes from "./routes/instructor.js";
 import certificateRoutes from "./routes/certificate.js";
 import studyGroupRoutes from "./routes/studyGroup.js";
 import flashcardRoutes from "./routes/flashcard.js";
+import learningPathRoutes from "./routes/learningPath.js";
+import skillGapRoutes from "./routes/skillGap.js";
+import reviewRoutes from "./routes/review.js";
+import wishlistRoutes from "./routes/wishlist.js";
 
 //using routes
 app.use("/api", userRoutes);
@@ -47,6 +51,10 @@ app.use("/api", instructorRoutes);
 app.use("/api", certificateRoutes);
 app.use("/api", studyGroupRoutes);
 app.use("/api", flashcardRoutes);
+app.use("/api", learningPathRoutes);
+app.use("/api", skillGapRoutes);
+app.use("/api", reviewRoutes);
+app.use("/api", wishlistRoutes);
 
 server.listen(5000, () => {
   console.log(`Server is running on http://localhost:${port}`);

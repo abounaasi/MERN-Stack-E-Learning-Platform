@@ -23,6 +23,93 @@
   margin: 0;
 }
 
+.courses-toolbar {
+  max-width: 1200px;
+  margin: 0 auto 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.courses-search {
+  position: relative;
+}
+
+.courses-search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 15px;
+  pointer-events: none;
+}
+
+.courses-search input {
+  width: 100%;
+  padding: 12px 16px 12px 44px;
+  font-size: 16px;
+  border: 1px solid #e0d0ea;
+  border-radius: 10px;
+  background: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.courses-search input:focus {
+  border-color: #8a4baf;
+  box-shadow: 0 0 0 3px rgba(138, 75, 175, 0.12);
+}
+
+.courses-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.courses-filters select {
+  padding: 10px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #555;
+  border: 1px solid #e0d0ea;
+  border-radius: 10px;
+  background: #ffffff;
+  cursor: pointer;
+  outline: none;
+}
+
+.courses-filters select:focus {
+  border-color: #8a4baf;
+}
+
+.courses-clear-btn {
+  font-size: 13px;
+  font-weight: 700;
+  color: #8a4baf;
+  background: #f3e8fb;
+  border: 1px solid #e6d4f2;
+  border-radius: 10px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.courses-clear-btn:hover {
+  background: #ebe0f5;
+}
+
+.courses-result-count {
+  max-width: 1200px;
+  margin: 0 auto 24px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #888;
+  text-align: left;
+}
+
 .course-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -39,6 +126,10 @@
   font-size: 16px;
 }
 
+.courses-clear-empty {
+  margin-top: 16px;
+}
+
 @media (max-width: 768px) {
   .courses {
     padding: 60px 16px 80px;
@@ -46,5 +137,10 @@
 
   .courses-header h2 {
     font-size: 28px;
+  }
+
+  .courses-filters select {
+    flex: 1 1 calc(50% - 5px);
+    min-width: 140px;
   }
 }

@@ -11,6 +11,13 @@ dotenv.config();
 const PLACEHOLDER_IMAGE = "uploads/placeholder.svg";
 const DEFAULT_INSTRUCTOR_PASSWORD = "instructor123";
 
+const inferLevel = (title) => {
+  const t = title.toLowerCase();
+  if (t.includes("advanced") || t.includes("bootcamp")) return "advanced";
+  if (t.includes("mastery") || t.includes("api development")) return "intermediate";
+  return "beginner";
+};
+
 const dataset = [
   {
     title: "React for Beginners",
@@ -342,6 +349,7 @@ const seed = async () => {
       title: item.title,
       description: item.description,
       category: item.category,
+      level: item.level || inferLevel(item.title),
       createdBy: item.createdBy,
       instructor: instructor._id,
       image: PLACEHOLDER_IMAGE,

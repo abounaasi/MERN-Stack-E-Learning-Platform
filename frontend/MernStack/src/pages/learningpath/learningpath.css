@@ -1,0 +1,486 @@
+.learning-path-page {
+  padding: 80px 24px 100px;
+  min-height: 60vh;
+  background: #faf7fc;
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.lp-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.lp-header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f3e8fb;
+  color: #8a4baf;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.lp-header h2 {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.lp-header p {
+  font-size: 17px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.lp-goal-form {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 36px;
+}
+
+.lp-goal-form input {
+  flex: 1;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #e0d0ea;
+  border-radius: 10px;
+  background: #ffffff;
+  outline: none;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.lp-goal-form input:focus {
+  border-color: #8a4baf;
+  box-shadow: 0 0 0 3px rgba(138, 75, 175, 0.12);
+}
+
+.lp-goal-form .common-btn {
+  margin-top: 0;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.lp-path-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.lp-tab {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border: 1px solid #e0d0ea;
+  border-radius: 999px;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 600;
+  color: #555;
+  cursor: pointer;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.lp-tab.active {
+  background: #8a4baf;
+  border-color: #8a4baf;
+  color: #ffffff;
+}
+
+.lp-tab-progress {
+  font-size: 11px;
+  opacity: 0.85;
+}
+
+.lp-roadmap {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 28px;
+  box-shadow: 0 4px 16px rgba(138, 75, 175, 0.06);
+}
+
+.lp-roadmap-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.lp-roadmap-header h3 {
+  font-size: 22px;
+  color: #1a1a1a;
+  margin: 0 0 8px;
+  font-weight: 700;
+}
+
+.lp-roadmap-header p {
+  font-size: 15px;
+  color: #666;
+  margin: 0 0 10px;
+  line-height: 1.5;
+}
+
+.lp-goal-tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #8a4baf;
+  background: #f3e8fb;
+  padding: 4px 12px;
+  border-radius: 999px;
+}
+
+.lp-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.lp-legend-item {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: 999px;
+}
+
+.lp-legend-platform {
+  color: #8a4baf;
+  background: #f3e8fb;
+}
+
+.lp-legend-external {
+  color: #2f6fb0;
+  background: #eef4fb;
+}
+
+.lp-progress-ring {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #8a4baf, #6b3f86);
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.lp-progress-value {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.lp-progress-label {
+  font-size: 10px;
+  opacity: 0.85;
+  margin-top: 2px;
+}
+
+.lp-progress-bar {
+  height: 6px;
+  background: #f0e6f7;
+  border-radius: 999px;
+  overflow: hidden;
+  margin-bottom: 32px;
+}
+
+.lp-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #8a4baf, #b078d3);
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* ─── Steps timeline ───────────────────────────── */
+.lp-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.lp-step {
+  display: flex;
+  gap: 20px;
+}
+
+.lp-step-track {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 40px;
+  flex-shrink: 0;
+}
+
+.lp-step-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.lp-step-line {
+  flex: 1;
+  width: 3px;
+  min-height: 24px;
+  background: #e8dce8;
+  margin: 4px 0;
+}
+
+.lp-step-body {
+  flex: 1;
+  padding-bottom: 28px;
+}
+
+.lp-step-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+
+.lp-step-label {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.lp-step-category {
+  font-size: 11px;
+  font-weight: 600;
+  color: #888;
+  background: #f5f5f5;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.lp-badge {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.lp-badge-platform {
+  color: #8a4baf;
+  background: #f3e8fb;
+}
+
+.lp-badge-external {
+  color: #2f6fb0;
+  background: #eef4fb;
+}
+
+.lp-step-resource {
+  color: #2f6fb0;
+  background: #eef4fb;
+}
+
+.lp-step-provider {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  margin: -2px 0 8px;
+  font-weight: 600;
+}
+
+.lp-step-body h4 {
+  font-size: 17px;
+  color: #1a1a1a;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+
+.lp-step-reason {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.lp-step-link {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lp-step-link-internal {
+  color: #8a4baf;
+}
+
+.lp-step-link-internal:hover {
+  color: #5f357e;
+  text-decoration: underline;
+}
+
+.lp-step-link-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2f6fb0;
+}
+
+.lp-step-link-external:hover {
+  color: #1e4d80;
+  text-decoration: underline;
+}
+
+.lp-step-link-external svg {
+  font-size: 11px;
+}
+
+.lp-step-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.lp-mark-done {
+  font-size: 13px;
+  font-weight: 700;
+  color: #555;
+  background: #f5f5f5;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 6px 12px;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+
+.lp-mark-done:hover {
+  background: #eef4fb;
+  border-color: #cfe2f5;
+  color: #2f6fb0;
+}
+
+.lp-step-locked-msg {
+  font-size: 13px;
+  color: #aaa;
+  font-style: italic;
+}
+
+/* completed */
+.lp-step--completed .lp-step-marker {
+  background: #8a4baf;
+  color: #ffffff;
+}
+
+.lp-step--completed .lp-step-line {
+  background: #8a4baf;
+}
+
+.lp-step--completed .lp-step-label {
+  color: #8a4baf;
+}
+
+/* current — internal (platform) */
+.lp-step--internal.lp-step--current .lp-step-marker {
+  background: #8a4baf;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(138, 75, 175, 0.25);
+}
+
+.lp-step--internal.lp-step--current .lp-step-body {
+  background: #faf3ff;
+  border: 1px solid #e6d4f2;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+
+.lp-step--internal.lp-step--current .lp-step-label {
+  color: #8a4baf;
+}
+
+/* current — external */
+.lp-step--external.lp-step--current .lp-step-marker {
+  background: #2f6fb0;
+  color: #ffffff;
+  box-shadow: 0 0 0 4px rgba(47, 111, 176, 0.2);
+}
+
+.lp-step--external.lp-step--current .lp-step-body {
+  background: #f5f9fd;
+  border: 1px solid #cfe2f5;
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 12px;
+}
+
+.lp-step--external.lp-step--current .lp-step-label {
+  color: #2f6fb0;
+}
+
+.lp-step--external.lp-step--completed .lp-step-marker {
+  background: #2f6fb0;
+  color: #ffffff;
+}
+
+.lp-step--external.lp-step--completed .lp-step-line {
+  background: #2f6fb0;
+}
+
+.lp-step--external.lp-step--completed .lp-step-label {
+  color: #2f6fb0;
+}
+
+/* locked */
+.lp-step--locked .lp-step-marker {
+  background: #e8e8e8;
+  color: #aaa;
+}
+
+.lp-step--locked .lp-step-body h4,
+.lp-step--locked .lp-step-reason {
+  color: #aaa;
+}
+
+.lp-step--locked .lp-step-label {
+  color: #bbb;
+}
+
+.lp-empty {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  padding: 40px 20px;
+}
+
+@media (max-width: 768px) {
+  .learning-path-page {
+    padding: 60px 16px 80px;
+  }
+
+  .lp-header h2 {
+    font-size: 28px;
+  }
+
+  .lp-goal-form {
+    flex-direction: column;
+  }
+
+  .lp-roadmap-header {
+    flex-direction: column;
+  }
+}

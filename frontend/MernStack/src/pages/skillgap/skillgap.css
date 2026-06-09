@@ -1,0 +1,273 @@
+.skill-gap-page {
+  padding: 80px 24px 100px;
+  min-height: 60vh;
+  background: #faf7fc;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.sg-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.sg-header-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #f3e8fb;
+  color: #8a4baf;
+  font-size: 24px;
+  margin-bottom: 16px;
+}
+
+.sg-header h2 {
+  font-size: 36px;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+  font-weight: 700;
+}
+
+.sg-header p {
+  font-size: 17px;
+  color: #666;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.sg-skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.sg-skill-badge {
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid #e0d0ea;
+  background: #ffffff;
+  color: #555;
+  cursor: pointer;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease,
+    transform 0.15s ease;
+}
+
+.sg-skill-badge:hover {
+  border-color: #8a4baf;
+  color: #8a4baf;
+}
+
+.sg-skill-badge.selected {
+  background: #8a4baf;
+  border-color: #8a4baf;
+  color: #ffffff;
+}
+
+.sg-skills-readonly .sg-skill-badge {
+  cursor: default;
+}
+
+.sg-skills-readonly .sg-skill-badge:hover {
+  transform: none;
+}
+
+.sg-hint {
+  text-align: center;
+  font-size: 14px;
+  color: #888;
+  margin: 0 0 24px;
+}
+
+.sg-analyze-btn {
+  display: block;
+  margin: 0 auto;
+}
+
+.sg-empty {
+  text-align: center;
+  color: #888;
+  font-size: 16px;
+  padding: 24px 20px;
+}
+
+/* ─── Results ──────────────────────────────────── */
+.sg-results-actions {
+  margin-bottom: 24px;
+}
+
+.sg-back-btn {
+  font-size: 14px;
+  font-weight: 600;
+  color: #8a4baf;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.sg-back-btn:hover {
+  color: #5f357e;
+  text-decoration: underline;
+}
+
+.sg-section {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 16px rgba(138, 75, 175, 0.06);
+}
+
+.sg-section h3 {
+  font-size: 18px;
+  color: #8a4baf;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.sg-gap-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sg-gap-tag {
+  font-size: 13px;
+  font-weight: 600;
+  color: #c0392b;
+  background: #fdecea;
+  padding: 6px 14px;
+  border-radius: 999px;
+}
+
+.sg-recommendations {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.sg-rec-card {
+  border: 1px solid #ececec;
+  border-radius: 12px;
+  padding: 18px 20px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.sg-rec-card:hover {
+  border-color: rgba(138, 75, 175, 0.35);
+  box-shadow: 0 4px 12px rgba(138, 75, 175, 0.08);
+}
+
+.sg-rec-external {
+  border-color: #cfe2f5;
+}
+
+.sg-rec-external:hover {
+  border-color: rgba(47, 111, 176, 0.4);
+  box-shadow: 0 4px 12px rgba(47, 111, 176, 0.08);
+}
+
+.sg-rec-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.sg-rec-skill {
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #888;
+}
+
+.sg-rec-badge {
+  font-size: 10px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 3px 8px;
+  border-radius: 999px;
+}
+
+.sg-rec-badge-internal {
+  color: #8a4baf;
+  background: #f3e8fb;
+}
+
+.sg-rec-badge-external {
+  color: #2f6fb0;
+  background: #eef4fb;
+}
+
+.sg-rec-card h4 {
+  font-size: 17px;
+  color: #1a1a1a;
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+
+.sg-rec-provider {
+  display: block;
+  font-size: 13px;
+  color: #888;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sg-rec-reason {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 12px;
+  line-height: 1.5;
+}
+
+.sg-rec-link {
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sg-rec-link-internal {
+  color: #8a4baf;
+}
+
+.sg-rec-link-internal:hover {
+  color: #5f357e;
+  text-decoration: underline;
+}
+
+.sg-rec-link-external {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: #2f6fb0;
+}
+
+.sg-rec-link-external:hover {
+  color: #1e4d80;
+  text-decoration: underline;
+}
+
+.sg-rec-link-external svg {
+  font-size: 11px;
+}
+
+@media (max-width: 768px) {
+  .skill-gap-page {
+    padding: 60px 16px 80px;
+  }
+
+  .sg-header h2 {
+    font-size: 28px;
+  }
+}
