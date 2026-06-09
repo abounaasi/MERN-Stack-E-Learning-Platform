@@ -1,0 +1,24 @@
+.dash-welcome {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+  padding: 20px 24px;
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(138, 75, 175, 0.06);
+}
+
+.dash-welcome-text h2 {
+  font-size: 22px;
+  color: #1a1a1a;
+  margin: 0 0 4px;
+  font-weight: 700;
+}
+
+.dash-welcome-text p {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
+}

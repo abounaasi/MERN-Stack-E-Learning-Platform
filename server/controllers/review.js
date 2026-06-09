@@ -66,7 +66,7 @@ export const getCourseReviews = TryCatch(async (req, res) => {
       : { createdAt: -1 };
 
   const reviews = await Review.find({ course: course._id })
-    .populate("user", "name")
+    .populate("user", "name avatar")
     .sort(sortOption);
 
   const stats = await Review.aggregate([
@@ -134,7 +134,7 @@ export const createReview = TryCatch(async (req, res) => {
     text,
   });
 
-  await review.populate("user", "name");
+  await review.populate("user", "name avatar");
 
   res.status(201).json({ message: "Review posted", review });
 });
@@ -160,7 +160,7 @@ export const updateReview = TryCatch(async (req, res) => {
   if (rating) review.rating = rating;
   if (text) review.text = text;
   await review.save();
-  await review.populate("user", "name");
+  await review.populate("user", "name avatar");
 
   res.json({ message: "Review updated", review });
 });

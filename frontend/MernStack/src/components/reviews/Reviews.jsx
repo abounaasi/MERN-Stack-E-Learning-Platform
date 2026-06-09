@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { FaThumbsUp } from "react-icons/fa";
 import { server } from "../../main";
 import StarRating from "./StarRating";
+import Avatar from "../avatar/Avatar";
 import "./reviews.css";
 
 const headers = () => ({
@@ -237,10 +238,13 @@ const Reviews = ({ courseId, isEnrolled, userId, onReviewChange }) => {
                 className={`review-card${isOwn ? " own" : ""}`}
               >
                 <div className="review-card-header">
-                  <span className="review-author">
-                    {review.user.name}
-                    {isOwn && " (You)"}
-                  </span>
+                  <div className="review-author-row">
+                    <Avatar user={review.user} size={32} />
+                    <span className="review-author">
+                      {review.user.name}
+                      {isOwn && " (You)"}
+                    </span>
+                  </div>
                   <StarRating value={review.rating} readonly size={14} />
                 </div>
                 <p className="review-text">{review.text}</p>

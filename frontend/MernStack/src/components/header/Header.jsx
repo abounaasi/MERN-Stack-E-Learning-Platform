@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import "./header.css";
 import { UserData } from "../../context/UserContext";
+import Avatar from "../avatar/Avatar";
 
 const Header = () => {
   const { isAuth, user } = UserData();
@@ -9,8 +10,6 @@ const Header = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
   const close = () => setMenuOpen(false);
-
-  const initial = user?.name ? user.name.charAt(0).toUpperCase() : "?";
 
   const NavLinks = ({ onClick, className }) => (
     <>
@@ -77,7 +76,7 @@ const Header = () => {
               onClick={() => navigate("/account")}
               aria-label="Account"
             >
-              <span className="account-avatar">{initial}</span>
+              <Avatar user={user} size={32} className="account-avatar" />
               <span className="account-name">{user?.name || "Account"}</span>
             </button>
           ) : (
@@ -115,7 +114,7 @@ const Header = () => {
                 navigate("/account");
               }}
             >
-              <span className="account-avatar">{initial}</span>
+              <Avatar user={user} size={32} className="account-avatar" />
               <span className="account-name">
                 {user?.name || "Account"}
               </span>

@@ -153,16 +153,6 @@
 }
 
 .account-avatar {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #8a4baf 0%, #b078d3 100%);
-  color: #fff;
-  font-size: 0.85rem;
-  font-weight: 700;
   flex-shrink: 0;
 }
 

@@ -6,11 +6,15 @@ import axios from "axios";
 import { server } from "../../main";
 import { FaFire, FaTrophy, FaAward, FaChartBar, FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { UserData } from "../../context/UserContext";
+import Avatar from "../../components/avatar/Avatar";
 
 const Dashboard = () => {
+  const { user } = UserData();
   const { mycourse } = CourseData();
   const [streak, setStreak] = useState({ currentStreak: 0, bestStreak: 0 });
   const [certificates, setCertificates] = useState([]);
+  const [leaders, setLeaders] = useState([]);
 
   async function fetchStreak() {
     try {
@@ -40,15 +44,34 @@ const Dashboard = () => {
     }
   }
 
+  async function fetchLeaderboard() {
+    try {
+      const { data } = await axios.get(`${server}/api/user/leaderboard`, {
+        headers: { token: localStorage.getItem("token") },
+      });
+      setLeaders(data.leaders);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   useEffect(() => {
     fetchStreak();
     fetchCertificates();
+    fetchLeaderboard();
   }, []);
 
   return (
     <section className="student-dashboard">
+      <div className="dashboard-welcome">
+        <Avatar user={user} size={56} />
+        <div className="dashboard-welcome-text">
+          <h2>My Learning</h2>
+          <p>Welcome back, {user?.name?.split(" ")[0] || "there"}!</p>
+        </div>
+      </div>
+
       <div className="dashboard-header">
-        <h2>My Learning</h2>
         <p>All the courses you're currently enrolled in.</p>
       </div>
 
@@ -111,6 +134,26 @@ const Dashboard = () => {
           </div>
         )}
       </div>
+
+      {leaders.length > 0 && (
+        <div className="leaderboard-section">
+          <h3>Streak Leaderboard</h3>
+          <div className="leaderboard-list">
+            {leaders.map((leader, idx) => (
+              <div key={leader._id} className="leaderboard-item">
+                <span className="leaderboard-rank">#{idx + 1}</span>
+                <Avatar user={leader} size={36} />
+                <div className="leaderboard-info">
+                  <span className="leaderboard-name">{leader.name}</span>
+                  <span className="leaderboard-streak">
+                    {leader.bestStreak} day best streak
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {certificates && certificates.length > 0 && (
         <div className="certificates-section">

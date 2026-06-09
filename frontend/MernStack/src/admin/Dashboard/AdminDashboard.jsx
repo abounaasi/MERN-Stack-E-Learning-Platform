@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../Utils/Layout";
 import axios from "axios";
 import { server } from "../../main";
+import DashboardWelcome from "../../components/dashboardWelcome/DashboardWelcome";
 import "./dashboard.css";
 
 const AdminDashboard = ({ user }) => {
@@ -32,6 +33,10 @@ const AdminDashboard = ({ user }) => {
   return (
     <div>
       <Layout>
+        <DashboardWelcome
+          user={user}
+          subtitle="Platform overview and user management."
+        />
         <div className="main-content">
           <div className="box">
             <p>Total Courses</p>

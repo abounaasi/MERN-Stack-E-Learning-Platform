@@ -197,6 +197,12 @@
   margin-bottom: 10px;
 }
 
+.review-author-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .review-author {
   font-size: 15px;
   font-weight: 700;

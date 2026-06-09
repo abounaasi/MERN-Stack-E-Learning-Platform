@@ -1,8 +1,12 @@
 import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import fs from "fs";
+import { promisify } from "util";
 import sendMail, { sendForgotMail } from "../middlewares/sendMail.js";
 import TryCatch from "../middlewares/TryCatch.js";
+
+const unlinkAsync = promisify(fs.unlink);
 
 export const register = TryCatch(async (req, res) => {
   const { email, name, password } = req.body;
@@ -120,6 +124,39 @@ export const getStreak = TryCatch(async (req, res) => {
     bestStreak: user.bestStreak,
     lastActivityDate: user.lastActivityDate,
   });
+});
+
+export const uploadAvatar = TryCatch(async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: "Please upload an image file" });
+  }
+
+  const user = await User.findById(req.user._id);
+
+  if (user.avatar) {
+    try {
+      await unlinkAsync(user.avatar);
+    } catch {
+      // old file may already be gone
+    }
+  }
+
+  user.avatar = req.file.path;
+  await user.save();
+
+  res.json({
+    message: "Profile picture updated",
+    user,
+  });
+});
+
+export const getLeaderboard = TryCatch(async (req, res) => {
+  const leaders = await User.find({ role: "user", bestStreak: { $gt: 0 } })
+    .sort({ bestStreak: -1, currentStreak: -1 })
+    .limit(10)
+    .select("name avatar bestStreak currentStreak");
+
+  res.json({ leaders });
 });
 
 export const forgotPassword = TryCatch(async (req, res) => {
