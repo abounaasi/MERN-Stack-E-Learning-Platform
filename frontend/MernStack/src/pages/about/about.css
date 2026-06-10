@@ -1,22 +1,166 @@
 .about {
-  padding: 80px 0;
+  padding: 80px 24px 100px;
+  min-height: 60vh;
+  background: #faf7fc;
+}
+
+.about-hero {
   text-align: center;
-  min-height: 55vh;
+  max-width: 720px;
+  margin: 0 auto 56px;
+}
 
-  .about-content {
-    max-width: 800px;
-    margin: 0 auto;
+.about-hero-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: #f3e8fb;
+  color: #8a4baf;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
 
-    h2 {
-      font-size: 32px;
-      color: #8a4baf;
-      margin-bottom: 20px;
-    }
+.about-hero h1 {
+  font-size: 40px;
+  color: #1a1a1a;
+  margin: 0 0 12px;
+  font-weight: 700;
+}
 
-    p {
-      font-size: 16px;
-      color: #333;
-      line-height: 1.6;
-    }
+.about-tagline {
+  font-size: 20px;
+  color: #8a4baf;
+  font-weight: 600;
+  margin: 0;
+}
+
+.about-content {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.about-mission,
+.about-belief {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 16px;
+  padding: 32px 36px;
+  box-shadow: 0 4px 16px rgba(138, 75, 175, 0.06);
+  text-align: left;
+}
+
+.about-mission h2,
+.about-belief h2 {
+  font-size: 22px;
+  color: #8a4baf;
+  margin: 0 0 16px;
+  font-weight: 700;
+}
+
+.about-mission p,
+.about-belief p {
+  font-size: 16px;
+  color: #444;
+  line-height: 1.75;
+  margin: 0 0 14px;
+}
+
+.about-mission p:last-child,
+.about-belief p:last-child {
+  margin-bottom: 0;
+}
+
+.about-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.about-pillar {
+  background: #ffffff;
+  border: 1px solid #ececec;
+  border-radius: 14px;
+  padding: 28px 22px;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(138, 75, 175, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.about-pillar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(138, 75, 175, 0.1);
+}
+
+.about-pillar svg {
+  font-size: 28px;
+  color: #8a4baf;
+  margin-bottom: 14px;
+}
+
+.about-pillar h3 {
+  font-size: 17px;
+  color: #1a1a1a;
+  margin: 0 0 10px;
+  font-weight: 700;
+}
+
+.about-pillar p {
+  font-size: 14px;
+  color: #666;
+  line-height: 1.55;
+  margin: 0;
+}
+
+.about-thanks {
+  text-align: center;
+  padding: 36px 24px;
+  background: linear-gradient(135deg, #8a4baf 0%, #6b3f86 100%);
+  border-radius: 16px;
+  color: #ffffff;
+}
+
+.about-thanks p {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}
+
+.about-thanks .common-btn {
+  background: #ffffff;
+  color: #8a4baf;
+  margin-top: 0;
+}
+
+.about-thanks .common-btn:hover {
+  background: #f3e8fb;
+}
+
+@media (max-width: 768px) {
+  .about {
+    padding: 60px 16px 80px;
+  }
+
+  .about-hero h1 {
+    font-size: 30px;
+  }
+
+  .about-tagline {
+    font-size: 17px;
+  }
+
+  .about-pillars {
+    grid-template-columns: 1fr;
+  }
+
+  .about-mission,
+  .about-belief {
+    padding: 24px 20px;
   }
 }
