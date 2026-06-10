@@ -36,7 +36,7 @@ const Verify = () => {
             sitekey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI"
             onChange={onChange}
           />
-          ,
+
           {show && (
             <button disabled={btnLoading} type="submit" className="common-btn">
               {btnLoading ? "Please Wait..." : "Verify"}
